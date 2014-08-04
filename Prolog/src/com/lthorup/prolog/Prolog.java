@@ -3,7 +3,7 @@ package com.lthorup.prolog;
 import java.util.ArrayList;
 
 /*
- * This class implements a prolog interpreter
+ * This class implements a simple prolog interpreter
  */
 public class Prolog implements Runnable {
 
