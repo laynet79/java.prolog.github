@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+/*
+ * This class implements a prolog rule database
+ */
 public class Database {
 
 	Map<Symbol,ArrayList<Rule>> ruleMap;

@@ -2,6 +2,9 @@ package com.lthorup.prolog;
 
 import java.util.ArrayList;
 
+/*
+ * This class implements a prolog interpreter
+ */
 public class Prolog implements Runnable {
 
 	Parser parser;
