@@ -52,21 +52,26 @@ public class Prolog implements Runnable {
 			console.print("yes\n> ");
 		}
 		catch(Exception e) {
-			console.print(String.format("ERROR: %s\n", e.getMessage()));
+			console.print(String.format("ERROR: %s\n> ", e.getMessage()));
 			return false;
 		}
 		return true;
 	}
 	
 	public boolean runQuery(String query) {
+		query = query.trim();
+		if (query.equals("")) {
+			console.print("> ");
+			return true;
+		}
 		try {
 			goals = parser.parseGoals(query);
-			console.print(String.format("<<--- %s --->>\n", goals.toString()));
+			//console.print(String.format("<<--- %s --->>\n", goals.toString()));
 			Thread thread = new Thread(this);
 			thread.start();
 		}
 		catch(Exception e) {
-			console.print(String.format("ERROR: %s\n", e.getMessage()));
+			console.print(String.format("ERROR: %s\n> ", e.getMessage()));
 			return false;
 		}
 		return true;
@@ -77,10 +82,10 @@ public class Prolog implements Runnable {
 		try {
 			success = false;
 			solve(goals, Binding.empty, 0);
-			console.print(String.format("%s\n", success ? "yes" : "no"));
+			console.print(String.format("%s\n> ", success ? "yes" : "no"));
 		}
 		catch(Exception e) {
-			console.print(String.format("ERROR: %s\n", e.getMessage()));
+			console.print(String.format("ERROR: %s\n> ", e.getMessage()));
 		}
 		running = false;
 	}

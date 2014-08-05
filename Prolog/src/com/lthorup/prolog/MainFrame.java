@@ -93,7 +93,6 @@ public class MainFrame extends JFrame {
 				if (event.getKeyChar() == KeyEvent.VK_ENTER) {
 					String query = console.readLine();
 					prolog.runQuery(query);
-					consoleView.setText(consoleView.getText() + "> ");
 				}
 			}
 		});
