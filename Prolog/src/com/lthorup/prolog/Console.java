@@ -39,10 +39,11 @@ public class Console {
 		String line = text.substring(start, end);
 		start = 0;
 		end = line.length();
-		char c = line.charAt(start);
-		while (start < end && (c == '\n' || c == '\r' || c == '>')) {
+		while (start < end) {
+			char c = line.charAt(start);
+			if (c != '\n' && c != '\r' && c != '>')
+				break;
 			start++;
-			c = line.charAt(start);
 		}
 		line = line.substring(start);
 		return line;

@@ -136,6 +136,7 @@ public class TheFrame extends JFrame {
 		splitPane.setRightComponent(scrollPane_1);
 		
 		consoleView = new JEditorPane();
+		consoleView.setText("> ");
 		consoleView.addKeyListener(new KeyAdapter() {
 			@Override
 			public void keyTyped(KeyEvent event) {
