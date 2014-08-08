@@ -38,6 +38,6 @@ public class Arithmetic extends Clause {
 		Term right = terms.get(1);
 		String leftString = (left instanceof Arithmetic) ? String.format("(%s)", left.toString(env)) : left.toString(env);
 		String rightString = (right instanceof Arithmetic) ? String.format("(%s)", right.toString(env)) : right.toString(env);
-		return String.format("%s %s %s", leftString, functor.name(), rightString);
+		return String.format("%s%s%s", leftString, functor.name(), rightString);
 	}	
 }

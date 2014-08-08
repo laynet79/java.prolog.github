@@ -55,6 +55,7 @@ public class TheFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public TheFrame() {
+		setTitle("Prolog");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 709, 610);
 		contentPane = new JPanel();

@@ -120,10 +120,10 @@ public class Tokenizer {
 	
 	//-------------------------------------------
 	private boolean parseVariable() {
-		if (inputNext >= inputEnd || ! Character.isUpperCase(input.charAt(inputNext)))
+		if (inputNext >= inputEnd || (! Character.isUpperCase(input.charAt(inputNext)) && input.charAt(inputNext) != '_'))
 			return false;
 		int i = inputNext;
-		while (i < inputEnd && Character.isLetter(input.charAt(i)))
+		while (i < inputEnd && (Character.isLetter(input.charAt(i)) || input.charAt(i) == '_'))
 			i++;
 		String name = input.substring(inputNext, i);
 		Symbol symbol = symTable.add(name);

@@ -15,6 +15,8 @@ public class SymbolTable {
 	}
 	
 	public Symbol add(String n) {
+		if (n.equals("_"))
+			return new Symbol(n);
 		for (Symbol s : table) {
 			if (n.equals(s.name()))
 				return s;
