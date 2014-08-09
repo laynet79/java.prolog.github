@@ -8,6 +8,10 @@ public class Number extends Term {
 		this.value = value;
 	}
 	
+	public void negate() {
+		value = -value;
+	}
+	
 	public double value() { return value; }
 	
 	@Override

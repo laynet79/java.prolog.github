@@ -142,6 +142,14 @@ public class Parser {
 			tok.expect(Symbol.lb);
 			term = parseList();
 		}
+		else if (t.symbol() == Symbol.minus) {
+			tok.expect(Symbol.minus);
+			term = parseTerm();
+			if (term instanceof Number)
+				((Number)term).negate();
+			else
+				term = new Neg(term);
+		}
 		else if (t.type() == Token.Type.NUMBER)
 			term = new Number(tok.expect(Token.Type.NUMBER).value());
 		else if (t.type() == Token.Type.VARIABLE)
