@@ -55,7 +55,7 @@ public class TheFrame extends JFrame {
 	 * Create the frame.
 	 */
 	public TheFrame() {
-		setTitle("Prolog");
+		setTitle("Prolog: untitled");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 709, 610);
 		contentPane = new JPanel();
@@ -78,10 +78,19 @@ public class TheFrame extends JFrame {
 					  setTitle(file.getName());
 				  }
 				  catch(Exception error) {}
-				  setTitle(file.getName());
+				  setTitle("Prolog: " + file.getName());
 				}
 			}
 		});
+		
+		JButton btnNew = new JButton("new");
+		btnNew.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				editorView.setText("");
+				setTitle("Prolog: untitled");
+			}
+		});
+		toolBar.add(btnNew);
 		toolBar.add(btnOpen);
 		
 		JButton btnSave = new JButton("Save");
@@ -95,6 +104,7 @@ public class TheFrame extends JFrame {
 					  FileWriter f = new FileWriter(file.getAbsolutePath());
 					  f.write(editorView.getText());
 					  f.close();
+					  setTitle("Prolog: " + file.getName());
 				  }
 				  catch(Exception error) {}
 				}
@@ -105,7 +115,13 @@ public class TheFrame extends JFrame {
 		JButton btnConsult = new JButton("Consult");
 		btnConsult.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				prolog.loadProgram(editorView.getText());
+				try {
+					int start = editorView.getSelectionStart();
+					int end = editorView.getSelectionEnd();
+					String text = (start == end) ? editorView.getText() : editorView.getText(start, end-start);
+					prolog.loadProgram(text);
+				}
+				catch(Exception exception) {}
 			}
 		});
 		toolBar.add(btnConsult);

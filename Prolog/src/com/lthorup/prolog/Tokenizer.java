@@ -23,7 +23,7 @@ public class Tokenizer {
 		input = str;
 		inputNext = 0;
 		inputEnd = input.length();
-		line = 0;
+		line = 1;
 		tokens.clear();
 		while ( parseWhiteSpace() ||
 				parseComment() ||
@@ -36,7 +36,7 @@ public class Tokenizer {
 			throw new Exception("unexpected input on line: " + line);
 		tokens.add(new Token(Token.Type.END, null, line));
 		tokNext = 0;
-		line = 0;
+		line = 1;
 	}
 	
 	//-------------------------------------------
