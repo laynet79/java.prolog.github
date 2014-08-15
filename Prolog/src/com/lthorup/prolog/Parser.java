@@ -58,22 +58,9 @@ public class Parser {
 	//---------------------------------------------
 	private Clause parseClause() throws Exception {
 		Token t = tok.peek(0);
-		if (t.symbol() == Symbol.cut) {
-			tok.expect(Symbol.cut);
-			return new Cut();
-		}
-		if (t.symbol() == Symbol.fail) {
-			tok.expect(Symbol.fail);
-			return new Fail();
-		}
-		if (t.symbol() == Symbol.not) {
-			tok.expect(Symbol.not);
-			Term term = parseTerm();
-			return new Not(term);
-		}
 		Term term = parseTerm();
 		if (term instanceof Symbol)
-			return new Clause((Symbol)term, null);
+			term = new Clause((Symbol)term, null);
 		if (term instanceof Clause)
 			return (Clause)term;
 		throw new Exception("bad clause found on line " + t.line());
@@ -133,7 +120,20 @@ public class Parser {
 	private Term parseTermFactor() throws Exception {
 		Token t = tok.peek(0);
 		Term term = null;
-		if (t.symbol() == Symbol.lp){
+		if (t.symbol() == Symbol.cut) {
+			tok.expect(Symbol.cut);
+			term = new Cut();
+		}
+		else if (t.symbol() == Symbol.fail) {
+			tok.expect(Symbol.fail);
+			term = new Fail();
+		}
+		else if (t.symbol() == Symbol.not) {
+			tok.expect(Symbol.not);
+			Term body = parseTerm();
+			term = new Not(body);
+		}
+		else if (t.symbol() == Symbol.lp){
 			tok.expect(Symbol.lp);
 			term = parseTerm();
 			tok.expect(Symbol.rp);

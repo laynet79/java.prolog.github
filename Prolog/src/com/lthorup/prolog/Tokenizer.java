@@ -34,7 +34,7 @@ public class Tokenizer {
 		input = null;
 		if (inputNext < inputEnd)
 			throw new Exception("unexpected input on line: " + line);
-		tokens.add(new Token(Token.Type.END, null, line));
+		tokens.add(new Token(Token.Type.END, Symbol.none, line));
 		tokNext = 0;
 		line = 1;
 	}
